@@ -6,7 +6,7 @@ export function Task({ task, deleteTask }) {
     <>
       <li>
         {task.name}
-        <button onClick={() => deleteTask(task.id)}>x</button>
+        <button class='delete' onClick={() => deleteTask(task.id)}>x</button>
       </li>
     </>
   );

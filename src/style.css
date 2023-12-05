@@ -24,6 +24,10 @@ button {
   margin-left: 5px;
 }
 
+button.delete {
+  float: right;
+}
+
 input {
   border: 0.5px solid black;
   padding: 1px 8px;
