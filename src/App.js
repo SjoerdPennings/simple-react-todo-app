@@ -6,25 +6,9 @@ import { Input } from './components/Input.js';
 
 export default function App() {
   //State vars
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(JSON.parse(window.localStorage.getItem('todo_list') ? window.localStorage.getItem('todo_list') : '[]'));
   const [id, setId] = useState(0);
-  const [loaded, setLoaded] = useState(false);
-
-  //On first load, read session
-  useEffect(() => {
-    if (loaded == false) {
-      let data = window.localStorage.getItem('todo_list') ? window.localStorage.getItem('todo_list') : '[]' ;
-      setList(JSON.parse(data));
-      setLoaded(true);
-    }
-  }, []);
-
-  //On re-render, save session
-  useEffect(() => {
-    if (loaded == true) {
-      window.localStorage.setItem('todo_list', JSON.stringify(list));
-    }
-  }, [list]);
+  saveTasks();
 
   //Add
   function addTask() {
@@ -46,6 +30,11 @@ export default function App() {
   //Delete
   function deleteTask(id) {
     setList(list.filter((task) => task.id != id));
+  }
+
+  //Save to session
+  function saveTasks() {
+    window.localStorage.setItem('todo_list', JSON.stringify(list));
   }
 
   //Check
